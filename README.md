@@ -13,7 +13,7 @@ It requires the following Python libraries:
 2. Numeric Python (numpy)
 3. Scientific Python (scipy)
 
-These dependencies can be easily installed using the Package Installer for Pythong (pip):
+These dependencies can be easily installed using the Package Installer for Python (pip):
 
 ```
 pip install --user numpy
