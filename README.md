@@ -48,12 +48,12 @@ surface are drawn - surface pseudoatoms are selected based on steric clash and t
 from actual protein atoms.
 
 Surface pseudoatoms are assigned their own b-factor based on the average alpha * RASA value of 
-nearby residues. Surface pseudoatoms that are nearby residues that promote surface binding
-have a corresponding higher bfactor themselves. Pseudoatoms below a particular cutoff 
+nearby residues. Surface pseudoatoms that are close to residues that promote surface binding
+have a corresponding higher b-factor themselves. Pseudoatoms below a particular cutoff 
 (currently 30) are not drawn. The output is written as a separate PDB file.
 
 In addition to writing the output PDB file, the program writes the highest pseudoatom
-b-factor, along with its x, y, z coordinates.
+b-factor, along with its x, y, z coordinates, to standard output.
 
 ## Usage Example
 
