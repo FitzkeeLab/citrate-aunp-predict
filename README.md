@@ -3,7 +3,7 @@ Tools to predict favorable protein binding regions with a citrate-capped gold na
 
 This project consists of three Python 3 scripts:
 
-1. asa-alpha_bfac.py     : A program the populates a PDB B-factor column with alpha*(relative ASA)
+1. asa-alpha_bfac.py     : A program that populates a PDB B-factor column with alpha*(relative ASA)
 2. asa-alpha_all_bfac.py : Similar to above, but operates on all chain IDs in the PDB
 3. binding_surface.py    : A program that converts the B-factor column to pseudoatoms at the surface
 
@@ -29,7 +29,7 @@ needed to calculate relative sidechain accessible surface areas (RASA).
 
 This program takes a PDB file input and writes a new PDB file with a modified B-factor column. The 
 B-factor becomes the product of the relative side chain accessible surface area (RASA, 0-100%) with 
-the nanoparticle binding alpha value. Higher binding residues are expected to interact with more 
+the nanoparticle binding alpha value. Higher binding residues are expected to interact more 
 favorably with the nanoparticle surface. Two versions of this program are provided: one where the
 chain ID is selectable as a command line argument (asa-alpha_bfac.py) and one where all chain IDs
 are selected (asa-alpha_all_bfac.py). Residues with less than 25% RASA are assigned a b-factor of -1.
@@ -38,7 +38,7 @@ Both programs leave non-protein atoms unchanged, but if one wishes to remove wat
 heteroatoms (which can affect RASA), one can remove these atoms in PyMOL (or manually) first.
 
 The output PDB file contains a suggested command to color the residues by b-factor in PyMOL, 
-assuming the complete range is desired (e.g. spectrum_b ...).
+assuming the complete range is desired (e.g., "spectrum_b ...").
 
 ## Binding Surface Program
 
@@ -57,7 +57,7 @@ b-factor, along with its x, y, z coordinates, to standard output.
 
 ## Usage Example
 
-A sample PDB file is included with this distribution in the example directory (GB3, PDB 2OED). 
+A sample PDB file is included with this repository in the example directory (GB3, PDB 2OED). 
 If the dependencies are installed, the surface calculations can be performed using the 
 following commands:
 
@@ -69,7 +69,7 @@ python3 binding-surface.py 2oed_np.pdb 2oed_surf.pdb
 Example versions of the output files are also included. 
 
 To view the file, we recommend PyMOL. To generate figures such as those shown in the text,
-load both the 2oed.pdb and the 2oed_surf.pdb, then type the following commands:
+load both the 2oed.pdb and the 2oed_surf.pdb, and then type the following commands:
 
 ```
 hide
