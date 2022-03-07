@@ -80,3 +80,9 @@ spectrum b, white_red, minimum=30, maximum=60, selection=2oed_surf
 set sphere_scale, 0.5, 2oed_surf
 ```
 
+## Citing this Work
+
+If you publish a result using these tools, please cite the following publication.
+
+> Xu J.X., Alom M.S., Yadav R., Fitzkee, N.C. "Predicting Protein Function and Orientation 
+> on a Gold Nanoparticle Surface Using a Residue-Based Affinity Scale." *Submitted.*
