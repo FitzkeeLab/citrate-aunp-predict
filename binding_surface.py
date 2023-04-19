@@ -1,10 +1,13 @@
-#!/usr/bin/python3
-
 #
 # title:   binding_surface.py
-# summary: Write pseudoatoms above a threshold for NP binding regions
-# author:  Nicholas Fitzkee (nfitzkee at chemistry.msstate.edu)
-# date:    February 19, 2021
+# summary: Calculate binding surface of a PDB with alpha in the bfac column
+# date:    April 18, 2023
+# author:  Nick Fitzkee (nfitzkee at chemistry.msstate.edu)
+#
+# history:
+# - 20230418 - Added additional chain IDs so that large number of atoms
+#              can be displayed without shifting columns
+#            - Prints a warning if too many virtual atoms are displayed
 #
 
 import sys, math, os
@@ -71,6 +74,10 @@ def generate_mesh(pdb, out):
     ngrx = int((xmax - xmin)/dgrid)
     ngry = int((ymax - ymin)/dgrid)
     ngrz = int((zmax - zmin)/dgrid)
+
+    print("x-axis: min=%8.3f max=%8.3f pts=%i" % (xmin, xmax, ngrx))
+    print("y-axis: min=%8.3f max=%8.3f pts=%i" % (ymin, ymax, ngry))
+    print("z-axis: min=%8.3f max=%8.3f pts=%i" % (zmin, zmax, ngrz))
     
     max_bfac = None
     max_coord = None
@@ -80,9 +87,12 @@ def generate_mesh(pdb, out):
         fmt = 'HETATM%5i %4s%1s%3s %1s%4i%1s   %8.3f%8.3f%8.3f%6.2f%6.2f '\
               '          %1s\n'
 
+        cnams = 'WXYZwxyz'
         aidx = 1
-        ridx = 1000
-        cnam = 'Z'
+        ridx = 1
+        cidx = 0
+        cnam = cnams[cidx]
+        
         for xi in range(ngrx):
             x = xmin + xi*dgrid
             for yi in range(ngry):
@@ -118,6 +128,16 @@ def generate_mesh(pdb, out):
                                  ridx, ' ', x, y, z, 1.0, avg_bfac, 'O'))
                         aidx = aidx + 1
                         ridx = ridx + 1
+
+                        if ridx > 9999:
+                            ridx = 1
+                            cidx = cidx + 1
+
+                            if cidx >= len(cnams):
+                                print("Warning: Resetting Chain Counter!")
+                                cidx = 0
+                                
+                            cnam = cnams[cidx]
 
                     if max_bfac is None or avg_bfac > max_bfac:
                         max_bfac = avg_bfac
